@@ -1,0 +1,149 @@
+@font-face {
+	font-family: OpenSans;
+	src: url('../fonts/OpenSans-Light.ttf');
+}
+
+a {
+    color: #444444;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+body {
+    font-family: OpenSans;
+}
+
+img {
+    float: left;
+    min-width: 100%;
+}
+
+@media only screen and (max-width : 480px) {
+    img {
+        height: 25rem;
+    }
+
+    .fixed-action-btn {
+        right: 23px;
+        bottom: 23px;
+    }
+}
+
+@media only screen and (min-width : 481px) {
+    img {
+        height: 50rem;
+    }
+
+    .fixed-action-btn {
+        right: 45px;
+        bottom: 45px;
+    }
+}
+
+section {
+    overflow: hidden;
+}
+
+section + p {
+    font-size: 2rem;
+}
+
+section + p a {
+    font-size: 1rem;
+    line-height: 2.8rem;
+    color: #444444;
+}
+
+[class|="col"] {
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.row.footer {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.foto-box {
+    box-shadow: 2px 2px 10px black;
+}
+
+
+
+
+
+
+
+.fixed-action-btn {
+    position: fixed;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 998;
+}
+
+.btn-floating.btn-large {
+    width: 55.5px;
+    height: 55.5px;
+}
+
+.btn-large {
+    height: 54px;
+    line-height: 54px;
+}
+
+.btn-floating {
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 37px;
+    height: 37px;
+    line-height: 37px;
+    padding: 0;
+    background-color: #26a69a;
+    border-radius: 50%;
+    transition: .3s;
+    cursor: pointer;
+    vertical-align: middle;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.btn, .btn-large {
+    text-decoration: none;
+    color: #fff;
+    background-color: #26a69a;
+    text-align: center;
+    letter-spacing: .5px;
+    transition: .2s ease-out;
+    cursor: pointer;
+}
+.btn, .btn-large, .btn-flat {
+    border: none;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    outline: 0;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+.btn-large:hover, .btn-floating:hover {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+}
+
+a.btn-floating:hover {
+    color: #FFFFFF;
+}
+
+.btn-floating.btn-large span.glyphicon {
+    line-height: 55.5px;
+    font-size: 2.6rem;
+    text-align: center;
+}
+
+.orange {
+    background-color: #f44336 !important;
+}
