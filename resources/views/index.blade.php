@@ -115,6 +115,20 @@
                 <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
             </a>
         </div>
+        <nav aria-label="...">
+            <ul class="pager">
+            @if ($page == '1')
+                <li class="disabled"><a href="">Previous</a></li>
+            @else
+                <li><a href="/{{ $page - 1 }}">Previous</a></li>
+            @endif
+            @if ($nextPage)
+                <li><a href="/{{ $page + 1 }}">Next</a></li>
+            @else
+                <li class="disabled"><a href="">Next</a></li>
+            @endif
+            </ul>
+        </nav>
         <footer>
             <div class="row footer">
                 <div class="col-lg-12 text-center">

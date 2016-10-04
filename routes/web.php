@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', ['as' => 'index', 'uses' => 'MainController@getIndex']);
+Route::get('/{page?}', 'MainController@getIndex')->name('index');
 
-Route::post('/', ['as' => 'uploadPhoto', 'uses' => 'MainController@uploadPhoto']);
+Route::post('/', 'MainController@uploadPhoto')->name('uploadPhoto');

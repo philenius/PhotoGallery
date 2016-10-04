@@ -15,12 +15,32 @@ use App\PhotoSubject;
 class MainController extends Controller
 {
 	private static $fileUploadDirectory = 'uploads';
+	private static $photosPerPage = 8;
 
-    public function getIndex()
+    public function getIndex($page = NULL)
     {
-    	$allPhotos = Photo::all();
+    	if (empty($page))
+    	{
+    		return redirect('/1');
+    	}
+
+    	// pagination
+    	$totalImageCount = Photo::all()->count();
+    	$totalPageCount = $totalImageCount / self::$photosPerPage;
+    	if (($totalImageCount % self::$photosPerPage) > 0) {
+    		$totalPageCount++;
+    	}
+
+    	$nextPage = false;
+    	if ($page < $totalPageCount)
+    	{
+    		$nextPage = true;
+    	}
+
+		$intervalStart = ($page-1) * self::$photosPerPage;
+    	$photos = Photo::offset($intervalStart)->limit(self::$photosPerPage)->get();
     	$allPhotoSubjects = PhotoSubject::all();
-    	return view('index')->with('photos', $allPhotos)->with('photoSubjects', $allPhotoSubjects);
+    	return view('index')->with('photos', $photos)->with('photoSubjects', $allPhotoSubjects)->with('page', $page)->with('nextPage', $nextPage);
     }
 
     public function uploadPhoto(Request $request)
