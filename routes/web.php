@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'MainController@getIndex');
+Route::get('/', ['as' => 'index', 'uses' => 'MainController@getIndex']);
+
+Route::post('/', ['as' => 'uploadPhoto', 'uses' => 'MainController@uploadPhoto']);

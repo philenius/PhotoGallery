@@ -3,6 +3,22 @@
 	src: url('../fonts/OpenSans-Light.ttf');
 }
 
+.no-margin {
+    margin: 0 !important;
+}
+
+.only-margin-top {
+    margin-bottom: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.only-margin-bottom {
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
 a {
     color: #444444;
 }
@@ -71,12 +87,7 @@ section + p a {
     box-shadow: 2px 2px 10px black;
 }
 
-
-
-
-
-
-
+/* action button */
 .fixed-action-btn {
     position: fixed;
     padding-top: 15px;
@@ -89,52 +100,31 @@ section + p a {
     height: 55.5px;
 }
 
-.btn-large {
-    height: 54px;
-    line-height: 54px;
-}
-
 .btn-floating {
-    display: inline-block;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    width: 37px;
-    height: 37px;
-    line-height: 37px;
-    padding: 0;
-    background-color: #26a69a;
-    border-radius: 50%;
-    transition: .3s;
-    cursor: pointer;
-    vertical-align: middle;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-}
-.btn, .btn-large {
-    text-decoration: none;
-    color: #fff;
-    background-color: #26a69a;
-    text-align: center;
-    letter-spacing: .5px;
-    transition: .2s ease-out;
-    cursor: pointer;
-}
-.btn, .btn-large, .btn-flat {
     border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    color: #fff;
+    cursor: pointer;
     display: inline-block;
-    height: 36px;
+    letter-spacing: .5px;
     line-height: 36px;
+    padding: 0;
+    position: relative;
     outline: 0;
+    overflow: hidden;
+    transition: .3s;
+    text-align: center;
+    text-decoration: none;
     text-transform: uppercase;
+    transition: .2s ease-out;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
-}
-.btn-large:hover, .btn-floating:hover {
-    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+    z-index: 1;
 }
 
-a.btn-floating:hover {
+.btn-floating:hover, .btn:hover {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
     color: #FFFFFF;
 }
 
@@ -144,6 +134,61 @@ a.btn-floating:hover {
     text-align: center;
 }
 
-.orange {
+.red {
     background-color: #f44336 !important;
+}
+
+.btn.grey {
+    background-color: #b0bec5;
+}
+
+.btn, .btn-large {
+    text-decoration: none;
+    color: #fff;
+    background-color: #26a69a;
+    text-align: center;
+    letter-spacing: .5px;
+    transition: .2s ease-out;
+    cursor: pointer;
+    border: none;
+}
+
+.material-btn {
+    border-radius: 2px;
+}
+
+.btn {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.btn-submit:hover {
+    background-color: #009688;
+}
+
+.btn-cancel:hover {
+    background-color: #f44336;
+}
+
+.btn:focus {
+    color: #FFFFFF;
+}
+
+#fileButton {
+    background-color: #b0bec5;
+    color: #fff;
+    border-radius: 0 !important;
+    border: 1px solid #b0bec5;
+}
+
+p.instruction {
+    font-size: 1.9rem;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) translate(0px, 10px); }
+    to { transform: scale(1) translate(0px, -10px); }
 }
