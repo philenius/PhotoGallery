@@ -21,8 +21,8 @@ class CreatePhotosTable extends Migration
             $table->string('file_name_original')->default('NotFound.gif');
             $table->string('file_name_compressed')->default('NotFound.gif');
             $table->string('file_name_thumbnail')->default('NotFound.gif');
-            $table->integer('subject_id')->unsigned();
-            $table->foreign('subject_id')->references('id')->on('photo_subjects');
+            $table->integer('photo_subject_id')->unsigned()->nullable();
+            $table->foreign('photo_subject_id')->references('id')->on('photo_subjects');
             $table->timestamps();
         });
     }

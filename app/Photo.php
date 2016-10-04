@@ -11,5 +11,10 @@ class Photo extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'location', 'author', 'subject_id'];
+    protected $fillable = ['title', 'location', 'author'];
+
+    public function subject()
+    {
+        return $this->belongsTo('App\PhotoSubject');
+    }
 }

@@ -67,7 +67,7 @@
                                         @foreach($photoSubjects as $i=>$photoSubject)
                                             <div class="col-lg-3 col-md-6 col-sm-4 col-xs-6">
                                                 <div class="input-group">
-                                                    <input type="radio" name="photoSubject" aria-label="{{ $photoSubject->subject }}" id="subject{{ $i }}" required>
+                                                    <input type="radio" name="photoSubject" aria-label="{{ $photoSubject->subject }}" id="subject{{ $i }}" value="{{ $photoSubject->id }}" required>
                                                     <label for="subject{{ $i }}">
                                                         &nbsp;{{ $photoSubject->subject }}
                                                     </label>

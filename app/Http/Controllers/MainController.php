@@ -30,7 +30,7 @@ class MainController extends Controller
 	        'photoTitle' => 'required',
 	        'photoLocation' => 'required',
 	        'photo' => 'required|image',
-	        'photoSubject' => 'required'
+	        'photoSubject' => 'required|integer'
 	    ]);
 
     	$photo = Input::file('photo');
@@ -39,7 +39,9 @@ class MainController extends Controller
     		$mimeType = $photo->getMimeType();
     		if ($mimeType == 'image/jpeg' || $mimeType == 'image/png')
     		{
-    			$savedPhoto = Photo::create(['title' => $request->input('photoTitle'), 'location' => $request->input('photoLocation'), 'subject_id' => 1]);
+    			$photoSubject = PhotoSubject::find($request->input('photoSubject'));
+
+    			$savedPhoto = Photo::create(['title' => $request->input('photoTitle'), 'location' => $request->input('photoLocation')]);
     			$fileExtension = '.' . $photo->guessClientExtension();
     			$originalFile = $savedPhoto->id . $fileExtension;
     			$compressedFile = $savedPhoto->id . '_compressed' . $fileExtension;
@@ -54,11 +56,13 @@ class MainController extends Controller
     			exec('cd uploads/ && mogrify -resize x700 -quality 70 ' . $thumbnailFile);
     			exec('cd uploads/ && mogrify -quality 70 ' . $compressedFile);
 
-/*    			$savedPhoto->file_name_original = $originalFile;
+				$savedPhoto->file_name_original = $originalFile;
     			$savedPhoto->file_name_compressed = $compressedFile;
     			$savedPhoto->file_name_thumbnail = $thumbnailFile;
     			$savedPhoto->save();
-  */  		}
+
+    			$photoSubject->photos()->save($savedPhoto);
+    		}
     	}
 
     	return redirect()->route('index');
