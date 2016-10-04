@@ -17,10 +17,10 @@ class CreatePhotosTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('location');
-            $table->string('author');
-            $table->string('file_name_thumbnail')->default('NULL');
-            $table->string('file_name_compressed')->default('NULL');
-            $table->string('file_name_original');
+            $table->string('author')->nullable();
+            $table->string('file_name_original')->default('NotFound.gif');
+            $table->string('file_name_compressed')->default('NotFound.gif');
+            $table->string('file_name_thumbnail')->default('NotFound.gif');
             $table->integer('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('photo_subjects');
             $table->timestamps();
