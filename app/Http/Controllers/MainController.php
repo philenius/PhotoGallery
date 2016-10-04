@@ -36,6 +36,12 @@ class MainController extends Controller
     		$totalPageCount++;
     	}
 
+    	// Redirect if not existing page is being requested
+    	if ($page > $totalPageCount)
+    	{
+    		return redirect('/1');
+    	}
+
     	$nextPage = false;
     	if ($page < floor($totalPageCount))
     	{
