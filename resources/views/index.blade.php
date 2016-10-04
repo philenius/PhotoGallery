@@ -26,7 +26,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h3 class="modal-title" id="myModalLabel">Upload a New Photo</h3>
                 </div>
-                <form method="post" action="{{ route('uploadPhoto') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('uploadPhoto') }}" enctype="multipart/form-data" id="uploadForm">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="row">
@@ -140,6 +140,7 @@
 
     </div>
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/lightbox.min.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -173,7 +174,6 @@
             $('#inputFile').trigger('click');
         });
 
-        var formValidated = false;
         var inputs = document.querySelectorAll( '[type="file"]' );
         Array.prototype.forEach.call( inputs, function( input )
         {
@@ -191,7 +191,6 @@
 
                 if(fileName) {
                     $('input.fileName')[0].value = fileName;
-                    formValidated = true;
                 } else {
                     label.innerHTML = labelVal;
                 }
@@ -199,7 +198,9 @@
         });
 
         $('#submitUpload').click(function() {
-            if (formValidated) {
+            var form = $('#uploadForm');
+            form.validate();
+            if (form.valid()) {
                 $(this).html('<span class="glyphicon glyphicon-chevron-up spinning"></span>&nbsp;Uploading');
                 $(this).css('backgroundColor', '#009688');
             }
