@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/{page?}', 'MainController@getIndex')->name('index');
+Route::get('/{page?}', 'MainController@getIndex')->name('index')->where(['page' => '[0-9]+']);
 
 Route::post('/', 'MainController@uploadPhoto')->name('uploadPhoto');
