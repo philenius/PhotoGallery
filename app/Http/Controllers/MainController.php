@@ -37,11 +37,12 @@ class MainController extends Controller
     	}
 
     	// Redirect if not existing page is being requested
-    	if ($page > $totalPageCount)
+    	if (($page != 1) && ($page > $totalPageCount))
     	{
     		return redirect('/1');
     	}
 
+    	// Determines whether there exists a 'next' page
     	$nextPage = false;
     	if ($page < $totalPageCount)
     	{
