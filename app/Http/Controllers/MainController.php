@@ -31,7 +31,7 @@ class MainController extends Controller
 
     	// pagination
     	$totalImageCount = Photo::all()->count();
-    	$totalPageCount = $totalImageCount / self::$photosPerPage;
+    	$totalPageCount = floor($totalImageCount / self::$photosPerPage);
     	if (($totalImageCount % self::$photosPerPage) > 0) {
     		$totalPageCount++;
     	}
@@ -43,7 +43,7 @@ class MainController extends Controller
     	}
 
     	$nextPage = false;
-    	if ($page < floor($totalPageCount))
+    	if ($page < $totalPageCount)
     	{
     		$nextPage = true;
     	}
@@ -88,7 +88,7 @@ class MainController extends Controller
 					copy($path, self::$fileUploadDirectory . '/' . $thumbnailFile);
 
 					// Resize photos
-					exec('cd uploads/ && mogrify -resize x700 -quality 70 ' . $thumbnailFile);
+					exec('cd uploads/ && mogrify -resize x500 -quality 70 ' . $thumbnailFile);
 					exec('cd uploads/ && mogrify -quality 70 ' . $compressedFile);
 
 					$savedPhoto->file_name_original = $originalFile;
@@ -101,6 +101,12 @@ class MainController extends Controller
 			}
 
 	   	}
-    	return redirect()->route('index');
+
+	   	$totalImageCount = Photo::all()->count();
+    	$totalPageCount = floor($totalImageCount / self::$photosPerPage);
+    	if (($totalImageCount % self::$photosPerPage) > 0) {
+    		$totalPageCount++;
+    	}
+    	return redirect('/' . $totalPageCount);
     }
 }
