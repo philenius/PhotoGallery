@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Malaysia Photo Gallery - Share your photos from Malaysia. You can easily upload your photos and download photos from others in high quality." />
+    <meta name="keywords" content="Photo Gallery, Malaysia, Summercamp, International Intensive Programme 2016, Business Environment, Kompaktprogramm, DHBW Karlsruhe" />
     <title>Kompaktprogramm Malaysia 2016</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
