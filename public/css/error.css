@@ -5,7 +5,6 @@ body {
 
 h1 {
 	position: relative;
-	margin-top: 30vh;
 	margin-bottom: 20px;
 	font-family: sans-serif;
 	text-align: center;
@@ -27,9 +26,10 @@ h1 {
 		rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
 }
 
-@media (min-width:600px) {
+@media (min-width:300px) {
 	h1 {
-		font-size: 7rem;
+		font-size: 6rem;
+		margin-top: 10vh;
 	}
 	
 	h1 span {
@@ -39,9 +39,23 @@ h1 {
 	
 }
 
-@media (min-width:1200px) {
+@media (min-width:600px) {
 	h1 {
 		font-size: 7rem;
+		margin-top: 10vh;
+	}
+	
+	h1 span {
+		color: #293846;
+		font-size: 10rem;
+	}
+}
+
+@media (min-width:1200px) {
+	h1 {
+		font-size: 12rem;
+		margin-top: 15vh;
+		margin-bottom: 40px;
 	}
 	
 	h1 span {

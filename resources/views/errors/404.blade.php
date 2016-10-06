@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Malaysia Photo Gallery - Share your photos from Malaysia. You can easily upload your photos and download photos from others in high quality." />
     <meta name="keywords" content="Photo Gallery, Malaysia, Summercamp, International Intensive Programme 2016, Business Environment, Kompaktprogramm, DHBW Karlsruhe" />
 	<title>Error - Kompaktprogramm Malaysia 2016</title>
@@ -13,11 +13,11 @@
 <body>
 	<div class="container">
 		<h1>
-			Error 403<br>
+			Not Found
         </h1>
         <div class="row">
 	        <div class="col-lg-12 text-center">
-	        	<img src="{{ asset('uploads/Forbidden.gif') }}" class="">
+	        	<img src="{{ asset('uploads/ConfusedTravolta.gif') }}" class="">
 			</div>
 		</div>
 		<div class="text-center">
