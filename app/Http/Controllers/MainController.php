@@ -77,7 +77,11 @@ class MainController extends Controller
 				{
 					$photoSubject = PhotoSubject::find($request->input('photoSubject'));
 
-					$savedPhoto = Photo::create(['title' => $request->input('photoTitle'), 'location' => $request->input('photoLocation')]);
+					$savedPhoto = Photo::create([
+						'title' => $request->input('photoTitle'),
+						'location' => $request->input('photoLocation'),
+						'uploader' => $request->ip()
+						]);
 					$fileExtension = '.' . $photo->guessClientExtension();
 					$originalFile = $savedPhoto->id . $fileExtension;
 					$compressedFile = $savedPhoto->id . '_compressed' . $fileExtension;

@@ -11,7 +11,7 @@ class Photo extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'location', 'author'];
+    protected $fillable = ['title', 'location', 'author', 'uploader'];
 
     public function subject()
     {
