@@ -193,3 +193,9 @@ p.instruction {
     from { transform: scale(1) translate(0px, 10px); }
     to { transform: scale(1) translate(0px, -10px); }
 }
+
+/* error modal */
+#errorModal .modal-header {
+    background-color: #f44336;
+    color: white;
+}

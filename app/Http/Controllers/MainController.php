@@ -61,13 +61,13 @@ class MainController extends Controller
 		$this->validate($request, [
 	        'photoTitle' => 'required',
 	        'photoLocation' => 'required',
-	        'photo' => 'required|image',
+	        'file' => 'required|image',
 	        'photoSubject' => 'required|integer'
 	    ]);
 
-		if ($request->hasFile('photo')) {
+		if ($request->hasFile('file')) {
 	    	
-	    	$photo = Input::file('photo');
+	    	$photo = Input::file('file');
 	    	
 	    	if ($photo->isValid())
 	    	{
@@ -83,14 +83,29 @@ class MainController extends Controller
 					$compressedFile = $savedPhoto->id . '_compressed' . $fileExtension;
 					$thumbnailFile = $savedPhoto->id . '_thumb' . $fileExtension;
 
-					// Duplicate photo
-					$path = $photo->move(self::$fileUploadDirectory, $originalFile);
-					copy($path, self::$fileUploadDirectory . '/' . $compressedFile);
-					copy($path, self::$fileUploadDirectory . '/' . $thumbnailFile);
-
-					// Resize photos
-					exec('cd uploads/ && mogrify -resize x500 -quality 70 ' . $thumbnailFile);
-					exec('cd uploads/ && mogrify -quality 70 ' . $compressedFile);
+					// Save photo in different qualities & sizes
+					try
+					{
+						$path = $photo->move(self::$fileUploadDirectory, $originalFile);					
+						$successCopy1 = copy($path, self::$fileUploadDirectory . '/' . $compressedFile);
+						if (!$successCopy1)
+						{
+							throw new Exception();
+						}
+						$successCopy2 = copy($path, self::$fileUploadDirectory . '/' . $thumbnailFile);
+						if (!$successCopy2)
+						{
+							throw new Exception();
+						}
+						exec('cd uploads/ && mogrify -resize x500 -quality 70 ' . $thumbnailFile);
+						exec('cd uploads/ && mogrify -quality 70 ' . $compressedFile);
+					}
+					catch (Exception $e)
+					{
+						$savedPhoto->delete();
+						$request->session()->flash('error', 'There was an internal server error. Sorry for the inconvenience.');
+						return redirect('/1');
+					}
 
 					$savedPhoto->file_name_original = $originalFile;
 					$savedPhoto->file_name_compressed = $compressedFile;

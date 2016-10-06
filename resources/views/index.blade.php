@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Malaysia Photo Gallery - Share your photos from Malaysia. You can easily upload your photos and download photos from others in high quality." />
     <meta name="keywords" content="Photo Gallery, Malaysia, Summercamp, International Intensive Programme 2016, Business Environment, Kompaktprogramm, DHBW Karlsruhe" />
     <title>Kompaktprogramm Malaysia 2016</title>
@@ -19,7 +19,49 @@
     <![endif]-->
 </head>
 <body>
-    
+
+@if (Session::has('error'))
+    <!-- internal server error modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="internalServerErrorModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">Upload Error</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="no-margin">{{ Session::get('error') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default red" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+@endif
+
+@if (count($errors) > 0)
+    <!-- error modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="errorModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">Upload Error</h3>
+                </div>
+                <div class="modal-body">
+                @foreach ($errors->all() as $error)
+                    <p class="no-margin">{{ $error }}</p>
+                @endforeach
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default red" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+@endif
+
     <!-- Upload Modal -->
     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="UploadModal">
         <div class="modal-dialog modal-lg" role="document">
@@ -37,7 +79,7 @@
                             </div>
                             <div class="col-lg-6 no-margin">
                                 <div class="input-group">
-                                    <input class="inputfile" type="file" id="inputFile" accept="image/*" name="photo" required/>
+                                    <input class="inputfile" type="file" id="inputFile" accept="image/*" name="file" required/>
                                 </div>
                             </div>
                             <div class="col-lg-12 only-margin-top">
@@ -147,6 +189,13 @@
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript">
+    @if (count($errors) > 0)
+        $('#errorModal').modal();
+    @endif
+    @if (Session::has('error'))
+        $('#internalServerErrorModal').modal();
+    @endif
+
         var width = $(document).width();
         var lightBoxWidth = 0;
         if (width < 750) {
