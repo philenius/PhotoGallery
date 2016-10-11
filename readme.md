@@ -11,6 +11,7 @@
 ```
 sudo apt-get install imagemagick
 ```
+* Don't forget to run the migrations with the seeder:
 ```
 php artisan migrate --seed
 ```
