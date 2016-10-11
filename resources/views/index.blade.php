@@ -8,7 +8,7 @@
     <meta name="keywords" content="Photo Gallery, Malaysia, Summercamp, International Intensive Programme 2016, Business Environment, Kompaktprogramm, DHBW Karlsruhe" />
     <title>Kompaktprogramm Malaysia 2016</title>
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
