@@ -299,7 +299,6 @@
             if (form.valid()) {
                 $('.modal-body').css('opacity', 0.2);
                 $('#cancelUpload').prop('disabled', true);
-                $(this).prop('disabled', true);
                 $('.progress').show();
             }
         });
