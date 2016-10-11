@@ -1,22 +1,22 @@
 @font-face {
-	font-family: OpenSans;
-	src: url('../fonts/OpenSans-Light.ttf');
+    font-family: OpenSans;
+    src: url('../fonts/OpenSans-Light.ttf');
 }
 
-.no-margin {
-    margin: 0 !important;
+.no-margin-bottom {
+   margin-bottom: 0 !important; 
 }
 
-.only-margin-top {
-    margin-bottom: 0 !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-}
-
-.only-margin-bottom {
+.no-margin-top {
     margin-top: 0 !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-padding-right {
+    padding-right: 0 !important;
 }
 
 a {
@@ -27,7 +27,8 @@ a:hover {
     text-decoration: none;
 }
 
-body {
+body, html {
+    font-size: 10px !important;
     font-family: OpenSans;
 }
 
@@ -40,7 +41,7 @@ img {
     img {
         height: 25rem;
     }
-
+    
     .fixed-action-btn {
         right: 23px;
         bottom: 23px;
@@ -51,7 +52,7 @@ img {
     img {
         height: 50rem;
     }
-
+    
     .fixed-action-btn {
         right: 45px;
         bottom: 45px;
@@ -62,140 +63,184 @@ section {
     overflow: hidden;
 }
 
-section + p {
+section + div.row div[class|="col"] {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+section + div.row p {
     font-size: 2rem;
 }
 
-section + p a {
+section + div.row p a {
     font-size: 1rem;
     line-height: 2.8rem;
     color: #444444;
 }
 
 [class|="col"] {
-    overflow: hidden;
     margin-top: 1rem;
 }
+
+.col.photo {
+    overflow: hidden;
+}
+
 
 .row.footer {
     margin-top: 1rem;
     margin-bottom: 1rem;
     width: 100%;
+    font-size: 14px;
 }
 
 .foto-box {
     box-shadow: 2px 2px 10px black;
 }
 
-/* action button */
-.fixed-action-btn {
-    position: fixed;
-    padding-top: 15px;
-    margin-bottom: 0;
-    z-index: 998;
+/* material design fix */
+.btn-large i {
+    font-size: 2.4rem;
 }
 
-.btn-floating.btn-large {
-    width: 55.5px;
-    height: 55.5px;
+ul .btn-floating i {
+    font-size: 2.4rem;
 }
 
-.btn-floating {
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    letter-spacing: .5px;
-    line-height: 36px;
-    padding: 0;
-    position: relative;
-    outline: 0 !important;
-    overflow: hidden;
-    transition: .3s;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: .2s ease-out;
-    vertical-align: middle;
-    -webkit-tap-highlight-color: transparent;
-    z-index: 1;
+/* container fix */
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px !important;
+    }
 }
 
-.btn-floating:hover, .btn:hover {
-    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
-    color: #FFFFFF;
+@media (min-width: 992px) {
+    .container {
+        width: 970px !important;
+    }
 }
 
-.btn-floating.btn-large span.glyphicon {
-    line-height: 55.5px;
-    font-size: 2.6rem;
-    text-align: center;
+@media (min-width: 768px) {
+    .container {
+        width: 1170px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
+@media (max-width: 768px) {
+    .container {
+        width: 100% !important;
+    }
 }
 
-.red {
-    background-color: #f44336 !important;
+.container {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
 }
 
-.btn.grey {
-    background-color: #b0bec5;
+/* pagination fix */
+nav.pagination {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    display: block !important;
+    line-height: 1.42857143 !important;
+    margin: 0 !important;
+    height: auto !important;
 }
 
-.btn, .btn-large {
-    text-decoration: none;
-    color: #fff;
-    background-color: #26a69a;
-    text-align: center;
-    letter-spacing: .5px;
-    transition: .2s ease-out;
-    cursor: pointer;
-    border: none;
+ul.pager > li {
+    float: none;
+    height: auto !important;
 }
 
-.material-btn {
-    border-radius: 2px;
+ul.pager > li a {
+    line-height: 1.42857143 !important;
+    padding: 5px 13px;
+    font-size: 14px !important;
 }
 
-.btn {
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+.pager .disabled > a {
+    color: #777 !important;
 }
 
-.btn-submit:hover {
-    background-color: #009688;
+/* modal fix */
+.modal {
+    background-color: transparent !important;
+    width: auto !important;
+    max-height: 100% !important;
+    font-size: ;
 }
 
-.btn-cancel:hover {
-    background-color: #f44336;
+.modal .modal-content {
+    padding: 0 !important;
 }
 
-.btn:focus {
-    color: #FFFFFF;
-    outline: 0 !important;
-}
-
-#fileButton {
-    background-color: #b0bec5;
-    color: #fff;
-    border-radius: 0 !important;
-    border: 1px solid #b0bec5;
+.modal .modal-footer {
+    height: 60px;
 }
 
 p.instruction {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
 }
 
-.glyphicon.spinning {
-    animation: spin 1s infinite linear;
+#inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
-@keyframes spin {
-    from { transform: scale(1) translate(0px, 10px); }
-    to { transform: scale(1) translate(0px, -10px); }
+.btn.focus, .btn:focus, .btn:hover {
+    color: #FFFFFF;
+}
+
+.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+    float: none;
+}
+
+#submitUpload {
+    margin-top: 0px;
+}
+
+#submitUpload:hover {
+    background-color: #009688 !important;
+}
+
+#cancelUpload:hover {
+    background-color: #f44336 !important;
+}
+
+.row {
+    margin-bottom: 0;
+}
+
+input[type=text] {
+    margin-bottom: 0 !important;
+    font-size: 1.4rem;
+}
+
+input.fileName {
+    padding-top: 5px;
+    background-color: rgba(212, 212, 212, 0.21);
+}
+
+[type="radio"]:not(:checked)+label, [type="radio"]:checked+label {
+    font-size: 1.5rem;
+}
+
+.btn {
+    font-size: 15px;
 }
 
 /* error modal */
-#errorModal .modal-header {
+.modal.error .modal-header {
     background-color: #f44336;
     color: white;
+}
+
+.modal.error .modal-body > p {
+    font-size: 14px;
+    margin: 0;
 }
