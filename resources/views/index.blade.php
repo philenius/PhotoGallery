@@ -148,7 +148,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a class="waves-effect waves-light btn btn-flat" id="cancelUpload" data-dismiss="modal">Cancel</a>
+                        <div class="progress" hidden>
+                            <div class="indeterminate"></div>
+                        </div>
+                        <button class="waves-effect waves-light btn btn-flat" id="cancelUpload" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn waves-effect waves-light blue-grey lighten-1" id="submitUpload">Upload</button>
                     </div>
                 </form>
@@ -239,6 +242,7 @@
         $('#internalServerErrorModal').modal();
     @endif
 
+        // Lightbox
         var width = $(document).width();
         var lightBoxWidth = 0;
         if (width < 750) {
@@ -246,8 +250,6 @@
         } else {
                 lightBoxWidth = width / 1.5;
         }
-        
-        new WOW().init();
         lightbox.option({
             'showImageNumberLabel': false,
             'wrapAround': true,
@@ -255,7 +257,11 @@
             'maxWidth': lightBoxWidth,
             'resizeDuration': 400
         });
+        
+        // WOW
+        new WOW().init();
 
+        // File input
         $('#inputFile').hide();
         $('body').on('click', '#fileButton', function() { 
             $('#inputFile').trigger('click');
@@ -283,12 +289,18 @@
             });
         });
 
+        // Select first radio button
+        $('input[type="radio"]:first').prop('checked', true);
+
+        // Form submit
         $('#submitUpload').click(function() {
             var form = $('#uploadForm');
             form.validate();
             if (form.valid()) {
-                $(this).html('<span class="glyphicon glyphicon-chevron-up spinning"></span>&nbsp;Uploading');
-                $(this).css('backgroundColor', '#009688');
+                $('.modal-body').css('opacity', 0.2);
+                $('#cancelUpload').prop('disabled', true);
+                $(this).prop('disabled', true);
+                $('.progress').show();
             }
         });
     </script>

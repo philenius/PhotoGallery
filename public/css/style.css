@@ -176,7 +176,7 @@ ul.pager > li a {
 }
 
 .modal .modal-footer {
-    height: 60px;
+    height: auto;
 }
 
 p.instruction {
@@ -234,6 +234,11 @@ input.fileName {
     font-size: 15px;
 }
 
+.progress {
+    height: 5px;
+    margin-bottom: 0 !important;
+}
+
 /* error modal */
 .modal.error .modal-header {
     background-color: #f44336;
@@ -243,4 +248,9 @@ input.fileName {
 .modal.error .modal-body > p {
     font-size: 14px;
     margin: 0;
+}
+
+/* validation fix */
+label.error {
+    font-size: 11px;
 }
