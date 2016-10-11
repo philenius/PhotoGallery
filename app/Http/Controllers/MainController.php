@@ -73,7 +73,7 @@ class MainController extends Controller
 	    	{
 	
 				$mimeType = $photo->getMimeType();
-				if ($mimeType == 'image/jpeg' || $mimeType == 'image/png')
+				if ($mimeType == 'image/jpeg')
 				{
 					$photoSubject = PhotoSubject::find($request->input('photoSubject'));
 
@@ -103,6 +103,7 @@ class MainController extends Controller
 						}
 						exec('cd uploads/ && mogrify -resize x500 -quality 70 ' . $thumbnailFile);
 						exec('cd uploads/ && mogrify -quality 70 ' . $compressedFile);
+						exec('cd uploads/ && zip -r allPhotos.zip ' . $originalFile);
 					}
 					catch (Exception $e)
 					{
