@@ -119,6 +119,11 @@ class MainController extends Controller
 
 					$photoSubject->photos()->save($savedPhoto);
 		   		}
+		   		else
+		   		{
+		   			$request->session()->flash('error', 'Sorry, only .jpg / .jpeg files are allowed.');
+					return redirect('/1');
+		   		}
 			}
 
 	   	}
