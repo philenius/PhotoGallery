@@ -1,4 +1,4 @@
-<!DOTCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -7,6 +7,9 @@
     <meta name="description" content="Malaysia Photo Gallery - Share your photos from Malaysia. You can easily upload your photos and download photos from others in high quality." />
     <meta name="keywords" content="Photo Gallery, Malaysia, Summercamp, International Intensive Programme 2016, Business Environment, Kompaktprogramm, DHBW Karlsruhe" />
     <title>Kompaktprogramm Malaysia 2016</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
@@ -22,7 +25,7 @@
 
 @if (Session::has('error'))
     <!-- internal server error modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="internalServerErrorModal">
+    <div class="modal fade error" tabindex="-1" role="dialog" id="internalServerErrorModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -30,19 +33,17 @@
                     <h3 class="modal-title">Upload Error</h3>
                 </div>
                 <div class="modal-body">
-                    <p class="no-margin">{{ Session::get('error') }}</p>
+                    <p>{{ Session::get('error') }}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default red" data-dismiss="modal">Close</button>
+                    <a class="waves-effect waves-light btn red" data-dismiss="modal">Close</a>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-@endif
-
+    </div><!-- /.modal -->@endif
 @if (count($errors) > 0)
     <!-- error modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="errorModal">
+    <div class="modal fade error" tabindex="-1" role="dialog" id="errorModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -51,11 +52,11 @@
                 </div>
                 <div class="modal-body">
                 @foreach ($errors->all() as $error)
-                    <p class="no-margin">{{ $error }}</p>
+                    <p>{{ $error }}</p>
                 @endforeach
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default red" data-dismiss="modal">Close</button>
+                    <a class="waves-effect waves-light btn red" data-dismiss="modal">Close</a>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -74,37 +75,59 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-lg-12 no-margin">
-                                <p class="instruction">Select one <strong>image</strong> for upload (.png / .jpg):</p>
-                            </div>
-                            <div class="col-lg-6 no-margin">
-                                <div class="input-group">
-                                    <input class="inputfile" type="file" id="inputFile" accept="image/*" name="file" required/>
+                            <div class="col-lg-6 no-margin-top">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="instruction">Select one <strong>image</strong> for upload (only .jpg allowed):</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 no-padding-right">
+                                        <input type="text" class="fileName" placeholder="File name" disabled>
+                                        <input class="inputfile" type="file" id="inputFile" accept="image/jpeg" name="file" required/>
+                                    </div>
+                                    <div class="col-lg-4 no-padding">
+                                        <a class="waves-effect waves-light btn blue-grey lighten-3" id="fileButton">Select file</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 only-margin-top">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <hr>
-                                <p class="instruction">Enter a <strong>title</strong> / short description for the image:</p>
                             </div>
-                            <div class="col-lg-6 no-margin">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="photoTitle" placeholder="Name of building / location" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 no-margin-top">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="instruction">Enter a <strong>title</strong> / short description for the image:</p>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <input type="text" class="form-control" name="photoTitle" placeholder="Name of building / location" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 only-margin-top">
-                                <hr>
-                                <p class="instruction">Enter the name of the <strong>city</strong> or the country name:</p>
-                            </div>
-                            <div class="col-lg-6 no-margin">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="photoLocation" placeholder="Name of city / country" required>
+                            <div class="visible-xs">
+                                <div class="col-xs-12 no-margin-top">
+                                    <hr>
                                 </div>
                             </div>
-                            <div class="col-lg-12 no-margin">
+                            <div class="col-lg-6 no-margin-top">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="instruction">Enter the name of the <strong>city</strong> or the country name:</p>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <input type="text" class="form-control" name="photoLocation" placeholder="Name of city / country" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
                                 <hr>
                                 <p class="instruction">Select a <strong>subject</strong> for the photo:</p>
                             </div>
-                            <div class="col-lg-12 no-margin">
+                            <div class="col-lg-12">
                                 <div class="row">
                                     <fieldset>
                                         <div class="form-group">
@@ -125,13 +148,17 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn material-btn btn-cancel grey" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn material-btn btn-submit grey" id="submitUpload">Upload</button>
+                        <div class="progress" hidden>
+                            <div class="indeterminate"></div>
+                        </div>
+                        <button class="waves-effect waves-light btn btn-flat" id="cancelUpload" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn waves-effect waves-light blue-grey lighten-1" id="submitUpload">Upload</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -141,25 +168,43 @@
         </div>
         <div class="row">
         @foreach ($photos as $i=>$photo)
-            <div class="col-lg-6 col-md-6">
+
+            <div class="col-lg-6 col-md-6 photo">
                 <section class="wow @if (($i % 2) == 0) bounceInLeft @else bounceInRight @endif" data-wow-offset="50">
                     <a href="{{ asset('uploads/' . $photo->file_name_compressed) }}" data-lightbox="roadtrip">
                         <img src="{{ asset('uploads/' . $photo->file_name_thumbnail) }}">
                     </a>
                 </section>
-                <p class="wow @if (($i % 2) == 0) bounceInLeft @else bounceInRight @endif" data-wow-offset="50">
-                    {{ $photo->title }}, {{ $photo->location }}
-                    <a href="{{ asset('uploads/' . $photo->file_name_original) }}" class="pull-right download" download>Download</a>
-                </p>
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 no-margin-top">
+                        <p>
+                            {{ $photo->title }}, {{ $photo->location }}
+                            <a href="{{ asset('uploads/' . $photo->file_name_original) }}" class="pull-right download" download>Download</a>
+                        </p>
+                    </div>
+                </div>
             </div>
+
         @endforeach
         </div>
-        <div class="fixed-action-btn">
-            <a class="btn-floating btn-large red" data-toggle="modal" data-target="#uploadModal">
-                <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+        <div class="fixed-action-btn horizontal">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">menu</i>
             </a>
+            <ul>
+                <li>
+                    <a class="btn-floating blue-grey lighten-1" href="{{ asset('uploads/allPhotos.zip') }}" download>
+                        <i class="material-icons">file_download</i>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-floating blue-grey darken-1" data-toggle="modal" data-target="#uploadModal">
+                        <i class="material-icons">file_upload</i>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <nav aria-label="...">
+        <nav class="pagination" aria-label="pagination">
             <ul class="pager">
             @if ($page == '1')
                 <li class="disabled"><a href="">Previous</a></li>
@@ -186,6 +231,7 @@
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/lightbox.min.js') }}"></script>
+    <script src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript">
@@ -196,6 +242,7 @@
         $('#internalServerErrorModal').modal();
     @endif
 
+        // Lightbox
         var width = $(document).width();
         var lightBoxWidth = 0;
         if (width < 750) {
@@ -203,8 +250,6 @@
         } else {
                 lightBoxWidth = width / 1.5;
         }
-        
-        new WOW().init();
         lightbox.option({
             'showImageNumberLabel': false,
             'wrapAround': true,
@@ -212,19 +257,15 @@
             'maxWidth': lightBoxWidth,
             'resizeDuration': 400
         });
+        
+        // WOW
+        new WOW().init();
 
-        var newDOM = '<input type="text" class="form-control fileName" placeholder="File name" disabled>' +
-                    '<span class="input-group-btn">' +
-                    '<button class="btn" id="fileButton" type="button">Select file</button>' +
-                    '</span>';
-        $('#inputFile').before(newDOM);
-
-
+        // File input
         $('#inputFile').hide();
         $('body').on('click', '#fileButton', function() { 
             $('#inputFile').trigger('click');
         });
-
         var inputs = document.querySelectorAll( '[type="file"]' );
         Array.prototype.forEach.call( inputs, function( input )
         {
@@ -248,12 +289,18 @@
             });
         });
 
+        // Select first radio button
+        $('input[type="radio"]:first').prop('checked', true);
+
+        // Form submit
         $('#submitUpload').click(function() {
             var form = $('#uploadForm');
             form.validate();
             if (form.valid()) {
-                $(this).html('<span class="glyphicon glyphicon-chevron-up spinning"></span>&nbsp;Uploading');
-                $(this).css('backgroundColor', '#009688');
+                $('.modal-body').css('opacity', 0.2);
+                $('#cancelUpload').prop('disabled', true);
+                $(this).prop('disabled', true);
+                $('.progress').show();
             }
         });
     </script>
