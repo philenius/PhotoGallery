@@ -7,6 +7,7 @@
     * `memory_limit`
 
 * Make sure that Apache has read and write permissions to the `public/uploads` folder which contains the uploaded images.
+* Make sure that the web server has read and write permissions to the zip archive `allPhotos.zip` within the directory `public/uploads/`.
 * Make sure `ImageMagick` is installed:
 ```
 sudo apt-get install imagemagick
