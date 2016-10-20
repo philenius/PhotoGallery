@@ -172,7 +172,7 @@
             <div class="col-lg-6 col-md-6 photo">
                 <section class="wow @if (($i % 2) == 0) bounceInLeft @else bounceInRight @endif" data-wow-offset="50">
                     <a href="{{ asset('uploads/' . $photo->file_name_compressed) }}" data-lightbox="roadtrip">
-                        <img src="{{ asset('uploads/' . $photo->file_name_thumbnail) }}">
+                        <img class="thumbnail-photo" src="{{ asset('uploads/' . $photo->file_name_thumbnail) }}">
                     </a>
                 </section>
                 <div class="row">
