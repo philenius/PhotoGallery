@@ -6,12 +6,19 @@
     * `post_max_size`
     * `memory_limit`
 
-* Make sure that Apache has read and write permissions to the `public/uploads` folder which contains the uploaded images.
+* Make sure that the web server (user: www-data) has read and write permissions to the `public/uploads` folder which contains the uploaded images.
 * Make sure that the web server has read and write permissions to the zip archive `allPhotos.zip` within the directory `public/uploads/`.
-* Make sure `ImageMagick` is installed:
-```
-sudo apt-get install imagemagick
-```
+* Install the PHP extension `ImageMagick`:
+	* Installation:
+	```
+	sudo apt-get install php-imagick
+	```
+	* Activate the extension in `/etc/php/7.0/fpm/php.ini`:
+	```
+	extension=imagick.so
+	```
+	* Perform a reboot
+
 * Don't forget to run the migrations with the seeder:
 ```
 php artisan migrate --seed

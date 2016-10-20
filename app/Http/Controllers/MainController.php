@@ -91,19 +91,17 @@ class MainController extends Controller
 					try
 					{
 						$path = $photo->move(self::$fileUploadDirectory, $originalFile);					
-						$successCopy1 = copy($path, self::$fileUploadDirectory . '/' . $compressedFile);
-						if (!$successCopy1)
-						{
-							throw new Exception();
-						}
-						$successCopy2 = copy($path, self::$fileUploadDirectory . '/' . $thumbnailFile);
-						if (!$successCopy2)
-						{
-							throw new Exception();
-						}
-						exec('cd uploads/ && mogrify -resize x500 -quality 70 ' . $thumbnailFile);
-						exec('cd uploads/ && mogrify -quality 70 ' . $compressedFile);
 						exec('cd uploads/ && zip -r allPhotos.zip ' . $originalFile);
+	
+						$savedPhoto->file_name_original = $originalFile;
+						$savedPhoto->file_name_compressed = $compressedFile;
+						$savedPhoto->file_name_thumbnail = $thumbnailFile;
+						$savedPhoto->save();
+
+						$savedPhoto->createThumbnail();
+						$savedPhoto->createCompressedVersion();
+						
+						$photoSubject->photos()->save($savedPhoto);
 					}
 					catch (Exception $e)
 					{
@@ -111,13 +109,6 @@ class MainController extends Controller
 						$request->session()->flash('error', 'There was an internal server error. Sorry for the inconvenience.');
 						return redirect('/1');
 					}
-
-					$savedPhoto->file_name_original = $originalFile;
-					$savedPhoto->file_name_compressed = $compressedFile;
-					$savedPhoto->file_name_thumbnail = $thumbnailFile;
-					$savedPhoto->save();
-
-					$photoSubject->photos()->save($savedPhoto);
 		   		}
 		   		else
 		   		{
