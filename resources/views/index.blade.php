@@ -162,7 +162,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1>International Intensive Programme 2016 <small>Business Environment In Malaysia</small></h1>
+                <h1><a href="{{ route('index') }}">International Intensive Programme 2016 <small>Business Environment In Malaysia</small></a></h1>
                 <p></p>
             </div>
         </div>
